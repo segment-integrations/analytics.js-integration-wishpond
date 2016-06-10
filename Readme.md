@@ -18,11 +18,54 @@ When you toggle on Wishpond in Segment your Wishpond account will start to recei
 
 ## Identify
 
-When you `identify` a user, we'll pass that user's information to Wishpond. Wishpond Tracking Code, method identify, will be triggered with the params used to identify. To more details how Wishpond's identify works please visit [Wishpond API Docs: #identify](http://developers.wishpond.com/#identify).
+When you `identify` a user, we'll pass that user's information to Wishpond. Wishpond Tracking Code, method identify, will be triggered with the params used to identify.
+
+For instance, when Segment identify get called:
+
+```
+analytics.identify('1e810c197e', {
+  name: 'Bill Lumbergh',
+  email: 'bill@initech.com'
+});
+```
+
+Wishpond Tracker will be called with the following parameters:
+
+```
+Wishpond.Tracker.identify('1e810c197e', {
+  name: 'Bill Lumbergh',
+  email: 'bill@initech.com'
+});
+ ```
+
+A new lead will be created be in your 'Wishpond Leads Database'. The lead will have the attributes: name 'Bill Lumbergh', email 'bill@initech.com'.
+To more details how Wishpond's identify works please visit [Wishpond API Docs: #identify](http://developers.wishpond.com/#identify).
 
 ## Track
 
-When you `track` an event, we will send that event to Wishpond. Wishpond Tracking Code, method track, will be triggered with the params used to track the event. To more details how Wishpond's identify works please visit [Wishpond API Docs: #track](http://developers.wishpond.com/#tracking-events).
+When you `track` an event, we will send that event to Wishpond. Wishpond Tracking Code, method track, will be triggered with the params used to track the event.
+
+For instance, when Segment track get called:
+
+```
+analytics.track('Signed Up', {
+  plan: 'Startup',
+  source: 'Analytics Academy'
+});});
+```
+
+Wishpond Tracker will be called with the following parameters:
+
+```
+Wishpond.Tracker.track('Signed Up', {
+  plan: 'Startup',
+  source: 'Analytics Academy'
+});
+ ```
+
+A new event will be added to the lead that the current session is tracking. The event title will be 'Signed Up', and it will have the properties: plan: 'Startup',source: 'Analytics Academy'.
+
+To more details how Wishpond's identify works please visit [Wishpond API Docs: #track](http://developers.wishpond.com/#tracking-events).
 
 - - -
 ## Troubleshooting/ FAQ
