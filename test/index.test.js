@@ -1,9 +1,10 @@
+'use strict';
 
-var Analytics = require('analytics.js-core').constructor;
-var integration = require('analytics.js-integration');
-var sandbox = require('clear-env');
-var tester = require('analytics.js-integration-tester');
-var Wishpond = require('../lib/');
+var Analytics = require('@segment/analytics.js-core').constructor;
+var integration = require('@segment/analytics.js-integration');
+// var sandbox = require('@segment/clear-env');
+var tester = require('@segment/analytics.js-integration-tester');
+var Wishpond = require('../lib');
 
 describe('Wishpond', function() {
   var analytics;
@@ -24,8 +25,12 @@ describe('Wishpond', function() {
   afterEach(function() {
     analytics.restore();
     analytics.reset();
-    wishpond.reset();
-    sandbox();
+    // FIXME(ndhoule): window.addEventListener('message', ...) handlers aren't
+    // properly being cleaned up in tests and are causing uncaught exceptions.
+    // We should capture these events and remove them to prevent uncaught
+    // exceptions in the test suite
+    // wishpond.reset();
+    // sandbox();
   });
 
   it('should have the right settings', function() {
