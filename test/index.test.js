@@ -10,8 +10,8 @@ describe('Wishpond', function() {
   var analytics;
   var wishpond;
   var options = {
-    merchantId: '696791',
-    writeKey: '591bb1914bdf'
+    siteId: '696791',
+    apiKey: '591bb1914bdf'
   };
 
   beforeEach(function() {
@@ -36,8 +36,8 @@ describe('Wishpond', function() {
   it('should have the right settings', function() {
     analytics.compare(Wishpond, integration('Wishpond')
       .global('Wishpond')
-      .option('merchantId', '')
-      .option('writeKey', ''));
+      .option('siteId', '')
+      .option('apiKey', ''));
   });
 
   describe('before loading', function() {
