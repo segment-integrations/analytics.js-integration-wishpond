@@ -1,3 +1,8 @@
+2.0.1 / 2016-07-21
+==================
+
+  * Update integration settings to match Segment metadata
+
 2.0.0 / 2016-07-12
 ==================
 
