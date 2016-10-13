@@ -78,7 +78,7 @@ describe('Wishpond', function() {
 
       it('should send an id', function() {
         analytics.identify('id');
-        analytics.called(window.Wishpond.Tracker.identify, 'id', { id: 'id' });
+        analytics.called(window.Wishpond.Tracker.identify, 'id', {});
       });
 
       it('should not send only traits', function() {
@@ -88,14 +88,13 @@ describe('Wishpond', function() {
 
       it('should send an id and traits', function() {
         analytics.identify('id', { trait: true, email: 'blackwidow@shield.gov' });
-        analytics.called(window.Wishpond.Tracker.identify, 'id', { id: 'id', trait: true, email: 'blackwidow@shield.gov' });
+        analytics.called(window.Wishpond.Tracker.identify, 'id', { trait: true, email: 'blackwidow@shield.gov' });
       });
 
       it('should alias createdAt to created_at', function() {
         var date = new Date();
         analytics.identify('id', { createdAt: date });
         analytics.called(window.Wishpond.Tracker.identify, 'id', {
-          id: 'id',
           created_at: date
         });
       });
@@ -104,7 +103,6 @@ describe('Wishpond', function() {
         var date = new Date();
         analytics.identify('id', { updatedAt: date });
         analytics.called(window.Wishpond.Tracker.identify, 'id', {
-          id: 'id',
           updated_at: date
         });
       });
@@ -113,7 +111,6 @@ describe('Wishpond', function() {
         var name = 'Anderson';
         analytics.identify('id', { firstName: name });
         analytics.called(window.Wishpond.Tracker.identify, 'id', {
-          id: 'id',
           first_name: name
         });
       });
@@ -122,7 +119,6 @@ describe('Wishpond', function() {
         var name = 'Saunders';
         analytics.identify('id', { lastName: name });
         analytics.called(window.Wishpond.Tracker.identify, 'id', {
-          id: 'id',
           last_name: name
         });
       });
@@ -131,7 +127,6 @@ describe('Wishpond', function() {
         var phone = '778 681 7804';
         analytics.identify('id', { phoneNumber: phone });
         analytics.called(window.Wishpond.Tracker.identify, 'id', {
-          id: 'id',
           phone_number: phone
         });
       });
@@ -140,7 +135,6 @@ describe('Wishpond', function() {
         var score = 5;
         analytics.identify('id', { leadScore: score });
         analytics.called(window.Wishpond.Tracker.identify, 'id', {
-          id: 'id',
           lead_score: score
         });
       });
@@ -149,8 +143,14 @@ describe('Wishpond', function() {
         var value = 'yes';
         analytics.identify('id', { notDefault: value });
         analytics.called(window.Wishpond.Tracker.identify, 'id', {
-          id: 'id',
           notDefault: value
+        });
+      });
+
+      it('should allow an `id` trait', function() {
+        analytics.identify('id', { id: '1234' });
+        analytics.called(window.Wishpond.Tracker.identify, 'id', {
+          id: '1234'
         });
       });
     });
